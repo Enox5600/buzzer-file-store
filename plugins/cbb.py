@@ -1,5 +1,5 @@
 #(©)Codexbotz
-import requests
+from pyrogram import requests
 import json
 from pyrogram import __version__
 from bot import Bot
