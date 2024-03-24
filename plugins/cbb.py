@@ -4,6 +4,15 @@ from pyrogram import __version__
 from bot import Bot
 from config import OWNER_ID
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+import requests
+import json
+from motor.motor_asyncio import AsyncIOMotorClient
+from config import CLONE_DB_URI, DB_NAME
+
+
+client = AsyncIOMotorClient(CLONE_DB_URI)
+db = client[DB_NAME]
+col = db["users"]
 
 @Bot.on_callback_query()
 async def cb_handler(client: Bot, query: CallbackQuery):
@@ -35,3 +44,22 @@ async def get_short_link(user, link):
     data = response.json()
     if data["status"] == "success" or rget.status_code == 200:
         return data["shortenedUrl"]
+
+
+async def get_user(user_id):
+
+    user_id = int(user_id)
+
+    user = await col.find_one({"user_id": user_id})
+
+    if not user:
+        res = {
+            "user_id": user_id,
+            "shortener_api": None,
+            "base_site": None,
+        }
+
+        await col.insert_one(res)
+        user = await col.find_one({"user_id": user_id})
+
+    return user
