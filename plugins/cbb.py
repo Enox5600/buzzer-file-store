@@ -26,3 +26,12 @@ async def cb_handler(client: Bot, query: CallbackQuery):
             await query.message.reply_to_message.delete()
         except:
             pass
+
+async def get_short_link(user, link):
+    api_key = user["96c1ab747cb601d027fd1686b8e7ed85d4749b7e"]
+    base_site = user["publicearn.com"]
+    print(user)
+    response = requests.get(f"https://publicearn.com/api?api={api_key}&url={link}")
+    data = response.json()
+    if data["status"] == "success" or rget.status_code == 200:
+        return data["shortenedUrl"]
