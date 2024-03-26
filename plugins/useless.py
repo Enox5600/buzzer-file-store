@@ -1,3 +1,8 @@
+import requests
+import asyncio
+import aiohttp
+import logging
+import json 
 from bot import Bot
 from pyrogram.types import Message
 from pyrogram import filters
@@ -24,7 +29,7 @@ async def get_shortlink(link):
     if "http" == https:
         https = "https"
         link = link.replace("http", https)
-    url = f'https://https://publicearn.com/api'
+    url = f'https://publicearn.com/api'
     params = {'api': 96c1ab747cb601d027fd1686b8e7ed85d4749b7e,
               'url': link,
               }
@@ -37,8 +42,10 @@ async def get_shortlink(link):
                     return data['shortenedUrl']
                 else:
                     logger.error(f"Error: {data['message']}")
-                    return f'https://https://publicearn.com/api?api=96c1ab747cb601d027fd1686b8e7ed85d4749b7e&link={link}'
+                    return f'https://publicearn.com/api?api=96c1ab747cb601d027fd1686b8e7ed85d4749b7e&url={link}'
 
     except Exception as e:
         logger.error(e)
-        return f'https://publicearn.com/api?api=96c1ab747cb601d027fd1686b8e7ed85d4749b7e&link={link}'
+        return f'https://publicearn.com/api?api=96c1ab747cb601d027fd1686b8e7ed85d4749b7e&url={link}'
+
+        
