@@ -30,7 +30,7 @@ async def get_shortlink(link):
         https = "https"
         link = link.replace("http", https)
     url = f'https://publicearn.com/api'
-    params = {'api': 96c1ab747cb601d027fd1686b8e7ed85d4749b7e,
+    params = {'api': '96c1ab747cb601d027fd1686b8e7ed85d4749b7e',
               'url': link,
               }
 
