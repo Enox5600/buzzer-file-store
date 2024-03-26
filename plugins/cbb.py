@@ -1,16 +1,9 @@
 #(©)Codexbotz
-import json
+
 from pyrogram import __version__
 from bot import Bot
 from config import OWNER_ID
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from motor.motor_asyncio import AsyncIOMotorClient
-from config import CLONE_DB_URI, DB_NAME
-
-
-client = AsyncIOMotorClient(CLONE_DB_URI)
-db = client[DB_NAME]
-col = db["users"]
 
 @Bot.on_callback_query()
 async def cb_handler(client: Bot, query: CallbackQuery):
@@ -33,5 +26,3 @@ async def cb_handler(client: Bot, query: CallbackQuery):
             await query.message.reply_to_message.delete()
         except:
             pass
-
-
