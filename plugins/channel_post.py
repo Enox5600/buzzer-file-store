@@ -27,8 +27,12 @@ async def channel_post(client: Client, message: Message):
     base64_string = await encode(string)
     link = f"https://t.me/{client.username}?start={base64_string}"
     short = await get_shortlink(link)
-    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=f'https://telegram.me/share/url?url={link}')]])
-
+    reply_markup = InlineKeyboardMarkup(
+        reply_markup=InlineKeyboardMarkup([
+        [InlineKeyboardButton("🔁 Share URL", url = f'https://telegram.me/share/url?url={link}')],
+        [InlineKeyboardButton("💸 Short URL", url=f'{short}')]
+    ])
+    )
     await reply_text.edit(f"<b>Here is your link</b>\n\n{link} \n\n Shorted Link :-\n {short}", reply_markup=reply_markup, disable_web_page_preview = True)
 
     if not DISABLE_CHANNEL_BUTTON:
@@ -51,7 +55,12 @@ async def new_post(client: Client, message: Message):
     base64_string = await encode(string)
     link = f"https://t.me/{client.username}?start={base64_string}"
     short = await get_shortlink(link)
-    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=f'https://telegram.me/share/url?url={link}')],[InlineKeyboardButton("💸 Short URL", url=f'{short})]])
+    reply_markup = InlineKeyboardMarkup(
+        reply_markup=InlineKeyboardMarkup([
+        [InlineKeyboardButton("🔁 Share URL", url = f'https://telegram.me/share/url?url={link}')],
+        [InlineKeyboardButton("💸 Short URL", url=f'{short}')]
+    ])
+    )
     try:
         await message.edit_reply_markup(reply_markup)
     except FloodWait as e:
