@@ -1,5 +1,4 @@
 #(©)Codexbotz
-import requests
 import json
 from pyrogram import __version__
 from bot import Bot
@@ -35,30 +34,4 @@ async def cb_handler(client: Bot, query: CallbackQuery):
         except:
             pass
 
-async def get_short_link(user, link):
-    api_key = user["96c1ab747cb601d027fd1686b8e7ed85d4749b7e"]
-    base_site = user["publicearn.com"]
-    print(user)
-    response = requests.get(f"https://publicearn.com/api?api={api_key}&url={link}")
-    data = response.json()
-    if data["status"] == "success" or rget.status_code == 200:
-        return data["shortenedUrl"]
 
-
-async def get_user(user_id):
-
-    user_id = int(user_id)
-
-    user = await col.find_one({"user_id": user_id})
-
-    if not user:
-        res = {
-            "user_id": user_id,
-            "shortener_api": None,
-            "base_site": None,
-        }
-
-        await col.insert_one(res)
-        user = await col.find_one({"user_id": user_id})
-
-    return user
