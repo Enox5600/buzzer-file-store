@@ -28,10 +28,13 @@ async def start_command(client: Client, message: Message):
     if len(text)>7:
         try:
             base64_string = text.split(" ", 1)[1]
+            print(base64_string)
         except:
             return
         string = await decode(base64_string)
+        print(string)
         argument = string.split("-")
+        print(argument)
         if len(argument) == 3:
             try:
                 start = int(int(argument[1]) / abs(client.db_channel.id))
@@ -54,6 +57,7 @@ async def start_command(client: Client, message: Message):
             except:
                 return
         temp_msg = await message.reply("Please wait...")
+        print(temp_msg)
         try:
             messages = await get_messages(client, ids)
         except:
