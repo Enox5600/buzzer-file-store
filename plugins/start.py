@@ -32,7 +32,6 @@ async def start_command(client: Client, message: Message):
         except:
             return
         string = await decode(base64_string)
-        print(string)
         argument = string.split("-")
         print(argument)
         if len(argument) == 3:
@@ -57,7 +56,6 @@ async def start_command(client: Client, message: Message):
             except:
                 return
         temp_msg = await message.reply("Please wait...")
-        print(temp_msg)
         try:
             messages = await get_messages(client, ids)
         except:
