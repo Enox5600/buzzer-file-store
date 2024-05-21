@@ -1,9 +1,9 @@
 import jinja2
 from info import *
-from TechVJ.bot import TechVJBot
-from TechVJ.util.human_readable import humanbytes
-from TechVJ.util.file_properties import get_file_ids
-from TechVJ.server.exceptions import InvalidHash
+from Oxyver.bot import TechVJBot
+from Oxyver.util.human_readable import humanbytes
+from Oxyver.util.file_properties import get_file_ids
+from Oxyver.server.exceptions import InvalidHash
 import urllib.parse
 import logging
 import aiohttp
@@ -25,9 +25,9 @@ async def render_page(id, secure_hash, src=None):
     tag = file_data.mime_type.split("/")[0].strip()
     file_size = humanbytes(file_data.file_size)
     if tag in ["video", "audio"]:
-        template_file = "TechVJ/template/req.html"
+        template_file = "Oxyver/template/req.html"
     else:
-        template_file = "TechVJ/template/dl.html"
+        template_file = "Oxyver/template/dl.html"
         async with aiohttp.ClientSession() as s:
             async with s.get(src) as u:
                 file_size = humanbytes(int(u.headers.get("Content-Length")))
