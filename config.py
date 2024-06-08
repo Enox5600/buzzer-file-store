@@ -33,7 +33,7 @@ DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://Buzzer1:Buzzer1@cluster0.
 DB_NAME = os.environ.get("DATABASE_NAME", "filesharexbot")
 
 #force sub channel id, if you want enable force sub
-FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1001596759414"))
+FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "0"))
 
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 
@@ -41,7 +41,7 @@ TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
 try:
     ADMINS=[]
-    for x in (os.environ.get("ADMINS", "1412758888 1963008368 6628772675").split()):
+    for x in (os.environ.get("ADMINS", "1412758888 1822479202").split()):
         ADMINS.append(int(x))
 except ValueError:
         raise Exception("Your Admins list does not contain valid integers.")
@@ -92,7 +92,7 @@ if 'DYNO' in environ:
     ON_HEROKU = True
 else:
     ON_HEROKU = False
-URL = environ.get("URL", "https://mytestvj-998c9929dc7a.herokuapp.com/")
+URL = environ.get("URL", "https://buzzer-bjuiii-0a4e935586d0.herokuapp.com/")
 
 
 def LOGGER(name: str) -> logging.Logger:
